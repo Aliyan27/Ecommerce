@@ -1,0 +1,22 @@
+.Banner {
+  background: url("../../../public/assets/images/img.jpg") no-repeat;
+  background-size: cover;
+  padding: 200px 0;
+}
+.Banner .Container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  row-gap: 21px;
+}
+.Banner .Container h1 {
+  font-size: 40px;
+  line-height: 46px;
+}
+.Banner .Container span {
+  padding: 10px 50px;
+  color: aliceblue;
+  background-color: black;
+}

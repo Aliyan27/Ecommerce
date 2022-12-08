@@ -1,0 +1,29 @@
+header {
+  padding: 5px 0 5px 0;
+}
+ul {
+  display: flex;
+  column-gap: 42px;
+}
+.Logo {
+  width: 78px;
+  height: 35px;
+}
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+ul li {
+  font-size: 25px;
+  color: #232323;
+  text-align: center;
+}
+span {
+  font-size: 20px;
+  line-height: 26px;
+  color: #232323;
+  padding: 5px;
+}

@@ -1,0 +1,4 @@
+.productdescription {
+  display: flex;
+  flex-direction: column;
+}
