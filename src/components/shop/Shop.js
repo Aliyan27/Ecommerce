@@ -1,10 +1,11 @@
-import React from "react";
-import Card from "../card/Card";
+import React, { useState } from "react";
+import PaginatedItems from "../pagenation/Pagenation";
+import Pagenation from "../pagenation/Pagenation";
 
 const Shop = ({ data }) => {
   return (
     <>
-      <Card data={data} />
+      <PaginatedItems itemsPerPage={3} data={data} />
     </>
   );
 };

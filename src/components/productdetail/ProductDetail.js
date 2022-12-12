@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../card/card.css";
 import "./productdetail.css";
 import logo from "../../assets/0047628250_1_1_1_1a617acf-fddc-4eca-b0d3-7bf75c86352e_270x.progressive.jpg";
@@ -25,9 +25,12 @@ const ProductDetail = ({ data }) => {
               <li> Rating: {P_data.rating.rate}</li>
               <li>Category {P_data.category}</li>
             </ul>
+            <Link to={"/Bag"}>
+              <span>Shop Now</span>
+            </Link>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 };

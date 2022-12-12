@@ -6,6 +6,7 @@ import ProductDetail from "./components/productdetail/ProductDetail";
 import Login from "./components/login/Login";
 import Favourite from "./components/favourite/Favourite.js";
 import Shop from "./components/shop/Shop";
+import Bag from "./components/Bag/Bag";
 
 const AllRoutes = () => {
   const [data, setData] = useState([]);
@@ -25,6 +26,7 @@ const AllRoutes = () => {
         <Route path="/favourite" element={<Favourite />} />
         <Route path="/shop" element={<Shop data={data} />} />
         <Route path="/detail/:id" element={<ProductDetail data={data} />} />
+        <Route path="/Bag" element={<Bag />} />
       </Routes>
     </BrowserRouter>
   );
