@@ -13,7 +13,7 @@ const Login = () => {
       email: "",
       password: "",
     },
-    validationSchema: { validate },
+    validationSchema: validate,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       console.log(values);
@@ -30,16 +30,18 @@ const Login = () => {
             placeholder="Email"
             name="email"
             onChange={formik.handleChange}
-            value={formik.values.email}
+            // value={formik.values.email}
           />
+          {<p>{formik.errors.email}</p>}
           <label>Password: </label>
           <input
             type="password"
             placeholder="Password"
             name="password"
             onChange={formik.handleChange}
-            value={formik.values.password}
+            // value={formik.values.password}
           />
+          {<p>{formik.errors.password}</p>}
           <button type="submit">LOGIN</button>
         </form>
       </div>
