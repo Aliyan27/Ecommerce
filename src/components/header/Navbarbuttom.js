@@ -6,8 +6,12 @@ const Navbarbuttom = () => {
   return (
     <>
       <ul>
-        <li>Men</li>
-        <li>Women's</li>
+        <Link to={"/mens"}>
+          <li>Men</li>
+        </Link>
+        <Link to={"/women"}>
+          <li>Women</li>
+        </Link>
         <li>Buy now</li>
         <Link to={"/shop"}>
           <li>Shop</li>

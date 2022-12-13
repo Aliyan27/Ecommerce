@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import PaginatedItems from "../pagenation/Pagenation";
-import Pagenation from "../pagenation/Pagenation";
 
 const Shop = ({ data }) => {
   return (

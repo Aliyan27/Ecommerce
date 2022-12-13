@@ -14,7 +14,7 @@ const Card = ({ products, data }) => {
                 return (
                   <div className="Card-body" key={ele.id}>
                     <div className="image">
-                      <img src={ele.image} />
+                      <img src={ele.image} alt="missing" />
                     </div>
                     <div className="Card-detail">
                       <h2>{ele.title}</h2>
@@ -42,7 +42,7 @@ const Card = ({ products, data }) => {
                 return (
                   <div className="Card-body" key={ele.id}>
                     <div className="image">
-                      <img src={ele.image} />
+                      <img src={ele.image} alt="missing" />
                     </div>
                     <div className="Card-detail">
                       <h2>{ele.title}</h2>

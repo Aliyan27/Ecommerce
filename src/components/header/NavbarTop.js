@@ -1,6 +1,6 @@
 import React from "react";
 import { FaRegQuestionCircle, FaBalanceScale } from "react-icons/fa";
-import { Link, link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi";

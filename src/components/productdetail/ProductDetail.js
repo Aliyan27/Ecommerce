@@ -2,14 +2,13 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import "../card/card.css";
 import "./productdetail.css";
-import logo from "../../assets/0047628250_1_1_1_1a617acf-fddc-4eca-b0d3-7bf75c86352e_270x.progressive.jpg";
 
 const ProductDetail = ({ data }) => {
   const { id } = useParams();
   const P_data = data.find((P_datament) => {
-    return P_datament.id == id;
+    return P_datament.id === parseInt(id);
   });
-  console.log(P_data.title);
+
   return (
     <>
       <div className="Container">

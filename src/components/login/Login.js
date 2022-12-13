@@ -5,7 +5,7 @@ import "./login.css";
 
 const Login = () => {
   const validate = Yup.object({
-    email: Yup.string().email().required(),
+    email: Yup.string().email("email required").required("required"),
     password: Yup.string().min(6).required(),
   });
   const formik = useFormik({
@@ -14,7 +14,6 @@ const Login = () => {
       password: "",
     },
     validationSchema: { validate },
-
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       console.log(values);
