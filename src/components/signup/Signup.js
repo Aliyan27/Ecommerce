@@ -1,48 +1,47 @@
-import React from "react";
 import { useFormik } from "formik";
+import React from "react";
 import * as Yup from "yup";
-import "./login.css";
-import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
-const Login = () => {
+const Signup = () => {
   const navigate = useNavigate();
   const validate = Yup.object({
     email: Yup.string().email("email required").required("required"),
     password: Yup.string().min(6).required(),
+    repassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Both password need to be the same")
+      .required("required"),
   });
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+      repassword: "",
     },
     validationSchema: validate,
     onSubmit: async (values) => {
       try {
-        const user = await signInWithEmailAndPassword(
+        const user = await createUserWithEmailAndPassword(
           auth,
           values.email,
-          values.password
+          values.repassword
         );
-        localStorage.setItem("LogdIn", user.user.accessToken);
-        const User = localStorage.getItem("LogdIn");
-        if (User) {
-          navigate("/bag");
-        } else {
-          navigate("/login");
-        }
+        console.log(user, "data");
+        navigate("/login");
       } catch (error) {
         console.log(error.message);
       }
+
+      alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
-
   return (
     <>
       <div className="Container login">
-        <h2>My Account</h2>
+        <h2>Signup</h2>
         <form onSubmit={formik.handleSubmit}>
           <label>Email: </label>
           <input
@@ -62,14 +61,20 @@ const Login = () => {
             value={formik.values.password}
           />
           {<p>{formik.errors.password}</p>}
+          <label>RE-Password: </label>
+          <input
+            type="password"
+            placeholder="repassword"
+            name="repassword"
+            onChange={formik.handleChange}
+            value={formik.values.repassword}
+          />
+          {<p>{formik.errors.repassword}</p>}
           <button type="submit">LOGIN</button>
         </form>
-        <Link to={"/signup"} className="Bag">
-          <span>Sign up</span>
-        </Link>
       </div>
     </>
   );
 };
 
-export default Login;
+export default Signup;
