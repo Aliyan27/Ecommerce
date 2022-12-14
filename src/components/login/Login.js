@@ -4,11 +4,9 @@ import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/Firebase";
-import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
-  const navigate = useNavigate();
   const validate = Yup.object({
     email: Yup.string().email("email required").required("required"),
     password: Yup.string().min(6).required(),
@@ -27,12 +25,6 @@ const Login = () => {
           values.password
         );
         localStorage.setItem("LogdIn", user.user.accessToken);
-        const User = localStorage.getItem("LogdIn");
-        if (User) {
-          navigate("/bag");
-        } else {
-          navigate("/login");
-        }
       } catch (error) {
         console.log(error.message);
       }
