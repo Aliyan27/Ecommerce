@@ -7,6 +7,10 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { ReactComponent as Logo } from "./logo.svg";
 
 const NavbarTop = () => {
+  const logOut = () => {
+    localStorage.removeItem("LogdIn");
+    window.location.replace("/");
+  };
   return (
     <div className="Navbar">
       <div className="Logo">
@@ -14,14 +18,13 @@ const NavbarTop = () => {
           <Logo />
         </Link>
       </div>
-
       <nav>
         <ul>
           <li>
             <FaRegQuestionCircle />
           </li>
           <li>
-            <Link to={"/login"}>
+            <Link to={"/signup"}>
               <RiAccountCircleLine />
             </Link>
           </li>
@@ -39,6 +42,7 @@ const NavbarTop = () => {
               <span>Bag(10)</span>
             </Link>
           </li>
+          <span onClick={logOut}>Logout</span>
         </ul>
       </nav>
     </div>

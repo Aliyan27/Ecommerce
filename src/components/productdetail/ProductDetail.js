@@ -6,6 +6,7 @@ import "./productdetail.css";
 const ProductDetail = ({ data }) => {
   const { id } = useParams();
   const P_data = data.find((P_datament) => {
+    console.log(P_datament);
     return P_datament.id === parseInt(id);
   });
 

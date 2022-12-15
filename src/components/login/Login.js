@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/Firebase";
+
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
@@ -25,6 +26,7 @@ const Login = () => {
           values.password
         );
         localStorage.setItem("LogdIn", user.user.accessToken);
+        window.location.replace("/");
       } catch (error) {
         console.log(error.message);
       }

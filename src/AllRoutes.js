@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Header from "./components/header/Header1";
 import Home from "./Home";
 import ProductDetail from "./components/productdetail/ProductDetail";
@@ -20,25 +20,30 @@ const AllRoutes = () => {
       .then((res) => res.json())
       .then((json) => setData(json));
   }, []);
-  useMemo(() => {
-    console.log(User);
-  }, [User]);
+  console.log("User: ", User);
   return (
     <BrowserRouter>
       <Header />
-
-      <Routes>
-        <Route path="/" element={<Home data={data} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/favourite" element={<Favourite />} />
-        <Route path="/shop" element={<Shop data={data} />} />
-        <Route path="/detail/:id" element={<ProductDetail data={data} />} />
-        {User && <Route path="/Bag" element={<Bag />} />}
-        <Route path="/mens" element={<Mens data={data} />} />
-        <Route path="/women" element={<Women data={data} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
+      {!User ? (
+        <Routes>
+          <Route path="/" element={<Navigate to={"/login"} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Home data={data} />} />
+          <Route path="/favourite" element={<Favourite />} />
+          <Route path="/shop" element={<Shop data={data} />} />
+          <Route path="/detail/:id" element={<ProductDetail data={data} />} />
+          <Route path="/Bag" element={<Bag data={data} />} />
+          <Route path="/mens" element={<Mens data={data} />} />
+          <Route path="/women" element={<Women data={data} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      )}
     </BrowserRouter>
   );
 };
