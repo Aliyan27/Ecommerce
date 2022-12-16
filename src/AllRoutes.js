@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Header from "./components/header/Header1";
 import Home from "./Home";
@@ -14,6 +14,7 @@ import ErrorPage from "./components/ErrorPage";
 
 const AllRoutes = () => {
   const [data, setData] = useState([]);
+
   const User = localStorage.getItem("LogdIn");
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
