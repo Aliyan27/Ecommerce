@@ -21,7 +21,7 @@ const AllRoutes = () => {
       .then((res) => res.json())
       .then((json) => setData(json));
   }, []);
-  console.log("User: ", User);
+
   return (
     <BrowserRouter>
       <Header />

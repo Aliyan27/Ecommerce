@@ -13,6 +13,7 @@ const ProductDetail = ({ data }) => {
   const Upload = async () => {
     try {
       const docRef = await addDoc(collection(db, "product"), {
+        id: P_data.title,
         title: P_data.title,
         image: P_data.image,
         price: P_data.price,
@@ -24,7 +25,6 @@ const ProductDetail = ({ data }) => {
       console.error("Error adding document: ", e);
     }
   };
-  console.log(Upload);
 
   return (
     <>

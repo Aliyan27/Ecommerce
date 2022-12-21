@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/Firebase";
-import { useState } from "react";
+import "./bag.css";
 
 const Bag = () => {
   const [view, setView] = useState([]);
+
+  const DeleteItem = async (id) => {
+    await deleteDoc(doc(db, "product", id));
+    console.log(id, "deles");
+    window.location.reload();
+  };
+
   const Viewblog = async () => {
     const querySnapshot = await getDocs(collection(db, "product"));
     let blogList = querySnapshot.docs.map((doc) => {
@@ -15,13 +22,22 @@ const Bag = () => {
   useEffect(() => {
     Viewblog();
   }, []);
-  console.log(view);
+  const totalPrice = view.map((amount) => {
+    return amount?.price;
+  });
+  const getSum = (total, num) => {
+    return total + Math.round(num);
+  };
+  const Price = totalPrice.reduce(getSum, 0);
+  useEffect(() => {
+    console.log(Price, "price");
+  }, [totalPrice]);
+
   return (
     <>
       <div className="Container">
-        hello
         {view &&
-          view.map((item, id) => (
+          view.map((item) => (
             <div key={item.id}>
               <div className="image">
                 <img src={item.image} alt="missing" />
@@ -30,10 +46,14 @@ const Bag = () => {
                 <h2>{item.title}</h2>
                 <p>{item.category}</p>
                 <p>{item.price} usd</p>
+                {item.title}
+                <button type="submit" onClick={() => DeleteItem(item.id)}>
+                  delete
+                </button>
               </div>
-              {item.title}
             </div>
           ))}
+        <span>Your Bill {Price}</span>
       </div>
     </>
   );

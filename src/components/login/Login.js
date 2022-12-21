@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { auth } from "../../firebase/Firebase";
 
 import { signInWithEmailAndPassword } from "firebase/auth";

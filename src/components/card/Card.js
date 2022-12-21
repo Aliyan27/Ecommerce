@@ -1,10 +1,30 @@
 import React from "react";
 import "./card.css";
 import { FaBalanceScale } from "react-icons/fa";
-
-import { AiOutlineHeart } from "react-icons/ai";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/Firebase";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 const Card = ({ products, data }) => {
+  const [favouritesProduct, setFavouritesProduct] = useState(false);
+  const [s_data, setS_Data] = useState({});
+  const fav = (favID) => {
+    const favData = data.find((ele) => {
+      return ele.id == favID;
+    });
+    setS_Data({ ...favData });
+    try {
+      const docRef = addDoc(collection(db, "favourite"), {
+        favData,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   return (
     <div className="Card">
       <div className="Container">
@@ -25,8 +45,19 @@ const Card = ({ products, data }) => {
                       </Link>
                       <div className="Icone">
                         <ul>
-                          <li>
-                            <AiOutlineHeart />
+                          <li
+                            onClick={() => {
+                              fav(ele.id);
+                              {
+                                ele.id == s_data.id
+                                  ? setFavouritesProduct(true)
+                                  : setFavouritesProduct(false);
+                              }
+                            }}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {!favouritesProduct && <AiOutlineHeart />}
+                            {favouritesProduct && <AiFillHeart />}
                           </li>
                           <li>
                             <FaBalanceScale />
@@ -53,7 +84,10 @@ const Card = ({ products, data }) => {
                       </Link>
                       <div className="Icone">
                         <ul>
-                          <li>
+                          <li
+                            onClick={() => fav(ele.id)}
+                            style={{ cursor: "pointer" }}
+                          >
                             <AiOutlineHeart />
                           </li>
                           <li>

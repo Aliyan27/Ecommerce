@@ -4,7 +4,7 @@ import PaginatedItems from "../pagenation/Pagenation";
 const Shop = ({ data }) => {
   return (
     <>
-      <PaginatedItems itemsPerPage={3} data={data} />
+      <PaginatedItems itemsPerPage={6} data={data} />
     </>
   );
 };
